@@ -1,0 +1,253 @@
+% % % % % % % % % % % % % % % % % % % % %
+% Saarland Ph.D. thesis template		%
+% created by Annemarie Friedrich		%
+% % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % %
+% Layout and fonts					%
+% % % % % % % % % % % % % % % % % % %
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% Nice sans serif font
+\renewcommand{\encodingdefault}{T1}
+\usepackage[scaled=0.9]{helvet}
+
+
+% Paragraph and indent (as required by Prof. Dr. Pinkal)
+\setlength{\parindent}{0pt}
+% spacing between lines
+\linespread{1.1}
+\setlength{\parskip}{0.4ex plus 0.3ex minus 0.1ex}
+% have nice hanging captions for figures etc.
+\usepackage[labelfont=bf,format=hang]{caption}
+% this needs to be before fancy header
+\usepackage[includeheadfoot,a4paper,total={6in, 8.5in}]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% fancy header			    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{%
+	\markboth{\thechapter.\ #1}{}}
+\lhead[\fancyplain{}{\thepage}]%
+{\fancyplain{}{\bfseries \sffamily \nouppercase \leftmark}}
+\rhead[\fancyplain{}{\bfseries \sffamily \nouppercase \leftmark}]%
+{\fancyplain{}{\thepage}}
+\cfoot{}
+
+% TODO: header for appendix?
+
+
+%%%%%%%%%%%%%%%%%%
+%%  title page  %%
+%%%%%%%%%%%%%%%%%%
+
+% Adapted from a template by Robert Dahlke and Sigmund Stintzing (LMI München 2002)
+
+\usepackage{german}
+
+\newcommand{\ThesisTitle}[9]{
+  \thispagestyle{empty}
+  \vspace*{\stretch{1}}
+  {\parindent0cm
+  \rule{\linewidth}{.7ex}}
+  \begin{flushright}
+    \vspace*{\stretch{1}}
+    \sffamily\bfseries\Huge
+    #1\\
+    \vspace*{\stretch{2}}
+    \sffamily\bfseries\large
+    #2
+    \vspace*{\stretch{1}}
+  \end{flushright}
+  \rule{\linewidth}{.7ex}
+  
+  \vspace*{1cm}
+  
+  \begin{center}
+	    \includegraphics[width=1.5in]{owl}
+  \end{center}
+
+  \vspace*{\stretch{1}}
+  \begin{center}
+    \Large Dissertation\\
+    \Large zur Erlangung des akademischen Grades\\
+    \Large eines Doktors der Philosophie\\
+    \Large an den Philosophischen Fakult\"aten\\
+    \Large der Universit\"at des Saarlandes\\
+     \vspace*{0.5cm}
+    \large vorgelegt von\\
+    \large #2\\
+    \large aus #3\\
+    \vspace*{0.5cm}
+    \large  \sffamily Saarbr\"ucken, den #4
+  \end{center}
+
+  \newpage
+  \thispagestyle{empty}
+
+  \vspace*{\stretch{1}}
+
+  \begin{flushleft}
+  	\large Dekan der Philosophischen Fakult\"at II: #5 \\[1mm]
+    \large Erstgutachter:  #6 \\[1mm]
+    \large Zweitgutachter: #7 \\[1mm]
+    \large Drittgutachter: #8 \\[1mm]
+    \large Tag der m\"undlichen Pr\"ufung: #9\\
+  \end{flushleft}
+
+  \cleardoublepage
+}
+
+
+% % % % Chapter headings % % % % %
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\sffamily\LARGE\bfseries}
+{\chaptertitlename\ \thechapter}{0pt}{\rmfamily\Huge\rule{\linewidth}{.1ex}\\}[\vspace*{-0.6cm}\rule{\linewidth}{.1ex}]
+
+\titleformat{\part}[display]
+{\normalfont\sffamily\Huge\bfseries\centering}
+{\partname\ \thepart\\ \rule{\linewidth}{.1ex}}{10pt}{}
+
+
+% % % % % % % % % % % % % % % % % % %
+% Language stuff					%
+% % % % % % % % % % % % % % % % % % %
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc} % adding this makes sf font look weird??
+\usepackage[english]{babel}
+
+
+
+% % % % % % % % % % % % % % % % % % %
+% citation							%
+% % % % % % % % % % % % % % % % % % %
+\usepackage[round]{natbib}
+\usepackage[toc,page]{appendix}
+
+% % % % % % % % % % % % % % % % % % %
+% graphics etc						%
+% % % % % % % % % % % % % % % % % % %
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+% todonotes: useful while writing!
+\usepackage[backgroundcolor=yellow!30]{todonotes}
+% for showing todonotes properly
+\setlength{\marginparwidth}{2.2cm}
+%\reversemarginpar
+
+% % % % % % % % % % % % % % % % % % %
+% useful custom commands			%
+% % % % % % % % % % % % % % % % % % %
+
+% dense underline
+\newcommand{\dul}[1]{\underline{\smash{#1}}}
+
+
+% % % % % % % % % % % % % % % % % % %
+% stuff to create nice tables		%
+% % % % % % % % % % % % % % % % % % %
+\usepackage{booktabs} % For \toprule, \midrule and \bottomrule
+\usepackage{siunitx} % Formats the units and values
+\usepackage{pgfplotstable} % Generates table from .csv
+\usepackage{multirow}
+\usepackage{longtable} % for tables breaking pages
+\usepackage{array}
+\usepackage{ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+\usepackage{adjustbox}
+\usepackage{array}
+\newcolumntype{R}[2]{%
+	>{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+	l%
+	<{\egroup}%
+}
+\newcommand*\rot{\multicolumn{1}{R{45}{1em}}}% no optional argument here, please!
+
+
+% % % % % % % % % % % % % % % % % % %
+% environments						%
+% % % % % % % % % % % % % % % % % % %
+\usepackage{url}
+\usepackage{slashbox}
+\usepackage{indent}
+\usepackage{textcomp}
+\usepackage{enumerate}
+\usepackage{verbatim} % for comments
+\usepackage{fancyvrb}
+\usepackage{listings} % for comments
+\usepackage{qtree} % for syntactic trees (images)
+
+
+\newenvironment{packed_enum}{
+	\begin{enumerate}
+		\setlength{\itemsep}{1pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}
+		\setlength{\leftmargin}{0pt}
+	}{\end{enumerate}}
+
+\newenvironment{packed_enum_more_indent}{
+	\begin{enumerate}
+		\setlength{\itemsep}{1pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}
+		\setlength{\leftmargin}{4pt}
+	}{\end{enumerate}}
+
+\newenvironment{packed_item}{
+	\begin{itemize}
+		\setlength{\itemsep}{1pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}
+		\setlength{\leftmargin}{0pt}
+	}{\end{itemize}}
+
+\newenvironment{packed_list}{
+	\begin{list}
+		\setlength{\itemsep}{1pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}
+		\setlength{\leftmargin}{0pt}
+	}{\end{list}}
+
+\setlength{\fboxsep}{0.3cm}
+\setlength{\fboxrule}{1pt}
+
+% Example environment (for language examples)
+% use with \begin{example}
+%... 
+%\end{example}
+
+\newcounter{examplecounter}
+\newlength\myLeftmargin
+\newenvironment{example}
+{\refstepcounter{examplecounter}
+\begin{indentation}{2.5em}{2em}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\itemsep}{0pt}
+	\begin{list}{\textbf{(\arabic{examplecounter})}}%
+		{\global\addtolength\myLeftmargin{\parindent}%
+			\global\addtolength\myLeftmargin{\parindent}
+			\setlength\leftmargin{\myLeftmargin}%
+		}
+		\item\relax}
+	{\end{list}
+\end{indentation}}
+	
+	
+\newcommand{\labex}[1]{\label{ex:#1}}
+	
+% modular references
+\newcommand{\eref}[2][]{(\ref{ex:#2}#1)} %examples
+\newcommand{\aref}[3][]{(\ref{ex:#2}#1#3)} %examples with (a) / (b)
+\newcommand{\cref}[1]{Chapter~\ref{chap:#1}} % chapters
+\newcommand{\dref}[1]{Definition~\ref{def:#1}} % definitions
+\newcommand{\tref}[1]{Table~\ref{tab:#1}} % tables
+\newcommand{\fref}[1]{Figure~\ref{fig:#1}} % figures
+\newcommand{\sref}[1]{Section~\ref{sec:#1}} %sections

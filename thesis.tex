@@ -1,0 +1,94 @@
+\documentclass[a4paper,12pt,oneside]{book}
+
+% Title page and headers, general formatting and options
+\input{thesis-template}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+\frontmatter
+
+\ThesisTitle
+    {The most important Ph.D. thesis ever} % thesis title
+    {Pumuckl}               % name of author
+    {Köln}                              % author's birth place
+    {some very lucky day in the future}                  % day of submission
+    {Dekan}									% name of dean
+    {first advisor}                % first reviewer
+    {second reviewer}            % second reviewer
+    {possibly another reviewer}						% third reviewer
+    {some very lucky day in the future}                  % date of oral exam / defense
+
+
+
+
+% Stuff required by Uni
+\pagestyle{empty}
+\input{chapters/preamble/abstract}
+\clearpage
+\input{chapters/preamble/short_summary_de}
+\clearpage
+\input{chapters/preamble/long_summary_de}
+\clearpage
+\input{chapters/preamble/acknowledgment}
+
+\clearpage
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\pagestyle{fancyplain} % fancy headers from here on
+\tableofcontents
+\markboth{Contents}{Contents}
+
+
+% % % % START OF THESIS TEXT % % % % %
+
+% start page numbering
+\mainmatter\setcounter{page}{1}
+
+\part{Introduction and background}
+\input{chapters/intro/intro}
+
+%% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% more chapters here, hopefully
+
+%% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\part{Conclusion and outlook}
+\input{chapters/conclusion/conclusion.tex}
+
+%% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\cleardoublepage
+\addcontentsline{toc}{part}{\listfigurename}
+\listoffigures
+\markboth{List of figures}{List of figures}
+ 
+\cleardoublepage
+\listoftables
+\addcontentsline{toc}{part}{\listtablename}
+\markboth{List of tables}{List of tables}
+
+
+\backmatter
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
+\markboth{}{}
+
+% % % Appendix % % %
+% The individual appendices should be sections!
+% sections will be numbered as A, B,... and subsections as A.1, A.2 etc.
+
+\clearpage
+\appendix
+\part*{Appendices}
+\addcontentsline{toc}{part}{Appendices}
+\renewcommand{\thesection}{\Alph{section}}
+
+\input{chapters/appendix/appendix1}
+
+
+\end{document}
