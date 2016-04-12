@@ -23,7 +23,7 @@
 % have nice hanging captions for figures etc.
 \usepackage[labelfont=bf,format=hang]{caption}
 % this needs to be before fancy header
-\usepackage[includeheadfoot,a4paper,total={6in, 10in},footskip=0pt]{geometry}
+\usepackage[includeheadfoot,a4paper,total={6in, 9.8in},footskip=0pt]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% fancy header			    %%
@@ -227,6 +227,7 @@
 \newlength\myLeftmargin
 \newenvironment{example}
 {\refstepcounter{examplecounter}
+\begin{samepage}
 \begin{indentation}{2.5em}{2em}
 	\setlength{\parsep}{0pt}
 	\setlength{\parskip}{0pt}
@@ -238,8 +239,16 @@
 		}
 		\item\relax}
 	{\end{list}
-\end{indentation}}
-	
+\end{indentation}
+\end{samepage}
+}
+
+% reset example count in each chapter
+\makeatletter
+\@addtoreset{examplecounter}{chapter}
+\makeatother
+
+
 	
 \newcommand{\labex}[1]{\label{ex:#1}}
 	
