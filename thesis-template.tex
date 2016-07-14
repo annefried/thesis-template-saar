@@ -10,6 +10,10 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 
+% layout for floats
+\usepackage{float}
+\usepackage{placeins}
+
 % Nice sans serif font
 \renewcommand{\encodingdefault}{T1}
 \usepackage[scaled=0.9]{helvet}
@@ -36,9 +40,7 @@
 {\fancyplain{}{\bfseries \sffamily \nouppercase \leftmark}}
 \rhead[\fancyplain{}{\bfseries \sffamily \nouppercase \leftmark}]%
 {\fancyplain{}{\thepage}}
-\cfoot{}
-
-% TODO: header for appendix?
+\cfoot{} % no page number at bottom
 
 
 %%%%%%%%%%%%%%%%%%
@@ -46,8 +48,7 @@
 %%%%%%%%%%%%%%%%%%
 
 % Adapted from a template by Robert Dahlke and Sigmund Stintzing (LMI München 2002)
-
-\usepackage{german}
+%\usepackage{german}
 
 \newcommand{\ThesisTitle}[9]{
   \thispagestyle{empty}
@@ -104,7 +105,16 @@
 
 
 % % % % Chapter headings % % % % %
-\usepackage{titlesec}
+\usepackage[raggedright]{titlesec}
+
+% fixes a bug in current texlive installation
+% http://tex.stackexchange.com/questions/299969/titlesec-loss-of-section-numbering-with-the-new-update-2016-03-15
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
 \titleformat{\chapter}[display]
 {\normalfont\sffamily\LARGE\bfseries}
 {\chaptertitlename\ \thechapter}{0pt}{\rmfamily\Huge\rule{\linewidth}{.1ex}\\}[\vspace*{-0.6cm}\rule{\linewidth}{.1ex}]
@@ -112,7 +122,7 @@
 \titleformat{\part}[display]
 {\normalfont\sffamily\Huge\bfseries\centering}
 {\partname\ \thepart\\ \rule{\linewidth}{.1ex}}{10pt}{}
-
+ 
 
 % % % % % % % % % % % % % % % % % % %
 % Language stuff					%
@@ -128,6 +138,9 @@
 % % % % % % % % % % % % % % % % % % %
 \usepackage[round]{natbib}
 \usepackage[toc,page]{appendix}
+
+\bibliographystyle{plainnat}
+
 
 % % % % % % % % % % % % % % % % % % %
 % graphics etc						%
@@ -153,10 +166,11 @@
 % % % % % % % % % % % % % % % % % % %
 \usepackage{booktabs} % For \toprule, \midrule and \bottomrule
 \usepackage{siunitx} % Formats the units and values
-\usepackage{pgfplotstable} % Generates table from .csv
+%\usepackage{pgfplotstable} % Generates table from .csv
 \usepackage{multirow}
 \usepackage{longtable} % for tables breaking pages
 \usepackage{array}
+%\usepackage{arydshln} % dashed lines
 \usepackage{ragged2e}
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 \usepackage{adjustbox}
@@ -167,6 +181,7 @@
 	<{\egroup}%
 }
 \newcommand*\rot{\multicolumn{1}{R{45}{1em}}}% no optional argument here, please!
+\newcommand*\rotVert{\multicolumn{1}{R{90}{1em}|}}% no optional argument here, please!
 
 
 % % % % % % % % % % % % % % % % % % %
@@ -181,6 +196,9 @@
 \usepackage{fancyvrb}
 \usepackage{listings} % for comments
 \usepackage{qtree} % for syntactic trees (images)
+\usepackage{booktabs} % for nice tables
+\usepackage{xcolor}
+\usepackage{colortbl}
 
 
 \newenvironment{packed_enum}{
@@ -225,10 +243,11 @@
 
 \newcounter{examplecounter}
 \newlength\myLeftmargin
+\setlength{\myLeftmargin}{0pt}
 \newenvironment{example}
 {\refstepcounter{examplecounter}
 \begin{samepage}
-\begin{indentation}{2.5em}{2em}
+\begin{indentation}{2.5em}{0em} % first: indent on left side, second: indent on right side
 	\setlength{\parsep}{0pt}
 	\setlength{\parskip}{0pt}
 	\setlength{\itemsep}{0pt}
@@ -242,13 +261,11 @@
 \end{indentation}
 \end{samepage}
 }
-
+	
 % reset example count in each chapter
 \makeatletter
 \@addtoreset{examplecounter}{chapter}
 \makeatother
-
-
 	
 \newcommand{\labex}[1]{\label{ex:#1}}
 	
@@ -260,3 +277,4 @@
 \newcommand{\tref}[1]{Table~\ref{tab:#1}} % tables
 \newcommand{\fref}[1]{Figure~\ref{fig:#1}} % figures
 \newcommand{\sref}[1]{Section~\ref{sec:#1}} %sections
+\newcommand{\apref}[1]{Appendix~\ref{app:#1}} %appendix sections
