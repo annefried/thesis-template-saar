@@ -4,6 +4,25 @@
 % % % % % % % % % % % % % % % % % % % % %
 
 % % % % % % % % % % % % % % % % % % %
+% Language stuff					%
+% % % % % % % % % % % % % % % % % % %
+
+% this was for pdflatex
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc} % adding this makes sf font look weird??
+%\usepackage[scaled=0.9]{helvet}
+
+%Xelatex
+\usepackage{fontspec}
+\usepackage[english]{babel}
+
+\setmainfont[Ligatures=TeX, Numbers=OldStyle]{Minion Pro}
+\setmonofont{Courier Std}
+\setsansfont{Myriad Pro}
+
+
+
+% % % % % % % % % % % % % % % % % % %
 % Layout and fonts					%
 % % % % % % % % % % % % % % % % % % %
 
@@ -13,10 +32,6 @@
 % layout for floats
 \usepackage{float}
 \usepackage{placeins}
-
-% Nice sans serif font
-\renewcommand{\encodingdefault}{T1}
-\usepackage[scaled=0.9]{helvet}
 
 
 % Paragraph and indent (as required by Prof. Dr. Pinkal)
@@ -117,19 +132,13 @@
 
 \titleformat{\chapter}[display]
 {\normalfont\sffamily\LARGE\bfseries}
-{\chaptertitlename\ \thechapter}{0pt}{\rmfamily\Huge\rule{\linewidth}{.1ex}\\}[\vspace*{-0.6cm}\rule{\linewidth}{.1ex}]
+{\chaptertitlename\ \thechapter}{0pt}{\rmfamily\Huge\rule{\linewidth}{.2ex}\raggedright\\}[\vspace*{-0.6cm}\rule{\linewidth}{.2ex}]
 
 \titleformat{\part}[display]
 {\normalfont\sffamily\Huge\bfseries\centering}
-{\partname\ \thepart\\ \rule{\linewidth}{.1ex}}{10pt}{}
+{\partname\ \thepart\\ \rule{\linewidth}{.3ex}}{10pt}{}
  
 
-% % % % % % % % % % % % % % % % % % %
-% Language stuff					%
-% % % % % % % % % % % % % % % % % % %
-\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc} % adding this makes sf font look weird??
-\usepackage[english]{babel}
 
 
 
@@ -138,6 +147,8 @@
 % % % % % % % % % % % % % % % % % % %
 \usepackage[round]{natbib}
 \usepackage[toc,page]{appendix}
+\usepackage{bibentry}
+\nobibliography*
 
 \bibliographystyle{plainnat}
 
@@ -170,6 +181,13 @@
 \usepackage{multirow}
 \usepackage{longtable} % for tables breaking pages
 \usepackage{array}
+\usepackage{dcolumn}
+%here we're setting up a version of the math fonts with normal x-width
+\DeclareMathVersion{nxbold}
+\SetSymbolFont{operators}{nxbold}{OT1}{cmr} {b}{n}
+\SetSymbolFont{letters}  {nxbold}{OML}{cmm} {b}{it}
+\SetSymbolFont{symbols}  {nxbold}{OMS}{cmsy}{b}{n}
+
 %\usepackage{arydshln} % dashed lines
 \usepackage{ragged2e}
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
